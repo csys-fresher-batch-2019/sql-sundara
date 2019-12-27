@@ -30,3 +30,7 @@ select *
 from books 
 inner join orders
 on books.book_id= orders.book_id;
+                           
+select * from books inner join orders on books.book_id= orders.book_id;
+select * from books left join orders on books.book_id= orders.book_id;
+select * from books right join orders on books.book_id= orders.book_id;
