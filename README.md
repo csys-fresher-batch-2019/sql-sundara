@@ -24,7 +24,7 @@ VALUES (player_id_sq.nextval,'Ravindrasinh Anirudhsinh Jadeja',to_date('06-12-19
 INSERT INTO players(player_id,player_fullname,date_of_birth,nick_name,role_name) 
 VALUES (player_id_sq.nextval,'	Deepak Lokendrasingh Chahar',to_date('07-08-1992','dd-mm-yyyy'),'DL ','bowler');
 ```
-sql
+```sql
 create table career(
 career_no number,
 matches number not null,
