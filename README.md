@@ -110,8 +110,9 @@ select * from players;
 
 ```sql
 
-update career set matches=matches + 0,innings=innings+0,not_outs=not_outs+0,runs_scored=runs_scored+ 0,balls_bowled=balls_bowled+0,
-runs_conceded=runs_conceded+0,wickets=wickets+0,catches=catches+0,stumpings=stumpings+0 where career_no=3;
+update career set matches=matches + 0,innings=innings+0,not_outs=not_outs+0,runs_scored=runs_scored+ 0,
+balls_bowled=balls_bowled+0,runs_conceded=runs_conceded+0,wickets=wickets+0,catches=catches+0,
+stumpings=stumpings+0 where career_no=3;
 ```
 *list career details of players
 ```sql
@@ -151,8 +152,8 @@ END BOWLING_AVERAGE_CALC;
 * for viewing best batting average of players
 ```sql
 
-select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average 
-from career c,players p ,cricketing r 
+select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)
+as batting_average from career c,players p ,cricketing r 
 where c.career_no = p. player_id and r.cric_no = p.player_id 
 order by BATTING_AVERAGE_CALC (runs_scored, not_outs,innings) DESC;
 ```
@@ -165,8 +166,8 @@ order by BATTING_AVERAGE_CALC (runs_scored, not_outs,innings) DESC;
 * for viewing best bowling average of players
 ```sql
 
-select p.player_fullname,p.role_name,r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) 
-as bowling_average
+select p.player_fullname,p.role_name,r.bowling,r.bowling_speed,
+round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) as bowling_average
 from career c,players p,cricketing r
 where c.career_no = p.player_id and r.cric_no = p.player_id;
 order by BOWLING_AVERAGE_CALC(runs_conceded,wickets) ASC;
@@ -180,9 +181,10 @@ order by BOWLING_AVERAGE_CALC(runs_conceded,wickets) ASC;
 * for viewing best allrounders
 ```sql
 
-select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average,
-r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) as bowling_average 
-from career c, players p,cricketing r 
+select p.player_fullname,p.role_name,r.batting,
+round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average,
+r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2)
+as bowling_average from career c, players p,cricketing r 
 where c.career_no = p.player_id and r.cric_no = p.player_id and p.role_name='all-rounder';
 ```
 | player_fullname                 | role_name   | batting   | batting_average | bowling   | bowling_speed | bowling_average |
