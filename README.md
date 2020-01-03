@@ -102,6 +102,28 @@ select * from career;
 | 3         | 3       | 2       | 1        | 18          | 126          | 129           | 2       | 0       | 0         |
 
 ```
+```
+*function for calculating batting average
+create or replace FUNCTION BATTING_AVERAGE_CALC(runs_scored number, not_outs number,innings number)
+RETURN NUMBER AS
+batting_average number;
+times_out number;
+BEGIN
+times_out:=innings-not_outs;
+batting_average := runs_scored / times_out;
+  RETURN batting_average;
+END BATTING_AVERAGE_CALC;
+```
+```
+*function for calculating bowling average
+create or replace FUNCTION BOWLING_AVERAGE_CALC (runs_conceded number,wickets number)
+RETURN NUMBER AS 
+bowling_average number;
+BEGIN
+bowling_average := runs_conceded/wickets;
+  RETURN bowling_average;
+END BOWLING_AVERAGE_CALC;
+```
 * for viewing best batting average of players
 select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average 
 from career c,players p ,cricketing r 
