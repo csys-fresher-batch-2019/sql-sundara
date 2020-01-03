@@ -92,6 +92,11 @@ select * from players;
 | 2         | Ravindrasinh Anirudhsinh Jadeja | 06-12-88      | jaddu     | all-rounder |
 | 3         | Deepak Lokendrasingh Chahar"    | 07-08-92      | DL        | bowler      |
 ```
+* for updating current match details of the players
+update career set matches=matches + 0,innings=innings+0,not_outs=not_outs+0,runs_scored=runs_scored+ 0,balls_bowled=balls_bowled+0,
+runs_conceded=runs_conceded+0,wickets=wickets+0,catches=catches+0,stumpings=stumpings+0 where career_no=3;
+```
+```
 *list career details of players
 select * from career;
 ```
