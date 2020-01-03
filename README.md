@@ -120,7 +120,6 @@ from career c,players p,cricketing r
 where c.career_no = p.player_id and r.cric_no = p.player_id;
 order by BOWLING_AVERAGE_CALC(runs_conceded,wickets) ASC;
 ```
-...
 | player_fullname                 | role_name   | bowling    | bowling_speed | bowling_average |
 |---------------------------------|-------------|------------|---------------|-----------------|
 | Mahendra singh dhoni            | batsman     | right-hand | medium        | 31              |
