@@ -91,12 +91,13 @@ insert into cricketing
 (cric_no,full_name,jersey_no,height,batting,bowling,bowling_speed)
 values(cric_no_sq.nextval,'Deepak Lokendrasingh Chahar',223,175,'right-hand','right-hand','medium');
 ```
-```sql
+
 Query:
 
 ## Features
 
 * list all players under ICC
+```sql
 select * from players;
 ```
 | player_id | player_fullname                 | date_of_birth | nick_name | role_name   |
@@ -105,13 +106,16 @@ select * from players;
 | 2         | Ravindrasinh Anirudhsinh Jadeja | 06-12-88      | jaddu     | all-rounder |
 | 3         | Deepak Lokendrasingh Chahar"    | 07-08-92      | DL        | bowler      |
 
-```sql
 * for updating current match details of the players
+
+```sql
+
 update career set matches=matches + 0,innings=innings+0,not_outs=not_outs+0,runs_scored=runs_scored+ 0,balls_bowled=balls_bowled+0,
 runs_conceded=runs_conceded+0,wickets=wickets+0,catches=catches+0,stumpings=stumpings+0 where career_no=3;
 ```
-```sql
 *list career details of players
+```sql
+
 select * from career;
 ```
 | career_no | matches | innings | not_outs | runs_scored | balls_bowled | runs_conceded | wickets | catches | stumpings |
@@ -120,9 +124,9 @@ select * from career;
 | 2         | 159     | 106     | 36       | 2188        | 8029         | 6552          | 181     | 58      | 0         |
 | 3         | 3       | 2       | 1        | 18          | 126          | 129           | 2       | 0       | 0         |
 
-
-```sql
 *function for calculating batting average
+```sql
+
 create or replace FUNCTION BATTING_AVERAGE_CALC(runs_scored number, not_outs number,innings number)
 RETURN NUMBER AS
 batting_average number;
@@ -133,8 +137,9 @@ batting_average := runs_scored / times_out;
   RETURN batting_average;
 END BATTING_AVERAGE_CALC;
 ```
-```sql
 *function for calculating bowling average
+```sql
+
 create or replace FUNCTION BOWLING_AVERAGE_CALC (runs_conceded number,wickets number)
 RETURN NUMBER AS 
 bowling_average number;
@@ -143,8 +148,9 @@ bowling_average := runs_conceded/wickets;
   RETURN bowling_average;
 END BOWLING_AVERAGE_CALC;
 ```
-```sql
 * for viewing best batting average of players
+```sql
+
 select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average 
 from career c,players p ,cricketing r 
 where c.career_no = p. player_id and r.cric_no = p.player_id 
@@ -156,9 +162,11 @@ order by BATTING_AVERAGE_CALC (runs_scored, not_outs,innings) DESC;
 | Ravindrasinh Anirudhsinh Jadeja | all-rounder | left-hand  | 31.26           |
 | Deepak Lokendrasingh Chahar     | bowler      | right-hand | 18              |
 
-```sql
 * for viewing best bowling average of players
-select p.player_fullname,p.role_name,r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) as bowling_average
+```sql
+
+select p.player_fullname,p.role_name,r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) 
+as bowling_average
 from career c,players p,cricketing r
 where c.career_no = p.player_id and r.cric_no = p.player_id;
 order by BOWLING_AVERAGE_CALC(runs_conceded,wickets) ASC;
@@ -169,8 +177,9 @@ order by BOWLING_AVERAGE_CALC(runs_conceded,wickets) ASC;
 | Ravindrasinh Anirudhsinh Jadeja | all-rounder | left-hand  | slow          | 36.2            |
 | Deepak Lokendrasingh Chahar     | bowler      | right-hand | medium        | 64              |
 
-```sql
 * for viewing best allrounders
+```sql
+
 select p.player_fullname,p.role_name,r.batting,round(BATTING_AVERAGE_CALC(runs_scored, not_outs,innings),2)as batting_average,
 r.bowling,r.bowling_speed,round(BOWLING_AVERAGE_CALC (runs_conceded,wickets),2) as bowling_average 
 from career c, players p,cricketing r 
@@ -180,13 +189,14 @@ where c.career_no = p.player_id and r.cric_no = p.player_id and p.role_name='all
 |---------------------------------|-------------|-----------|-----------------|-----------|---------------|-----------------|
 | Ravindrasinh Anirudhsinh Jadeja | all-rounder | left-hand | 31.26           | left-hand | slow          | 36.2            |
 
-```sql
 * for viewing most experienced players
-select players.player_fullname,career.matches from players inner join career on player_id=career_no; 
+```sql
 
+select players.player_fullname,career.matches from players inner join career on player_id=career_no; 
+```
 | player_fullname                 | matches |
 |---------------------------------|---------|
 | Mahendra singh dhoni            | 350     |
 | Ravindrasinh Anirudhsinh Jadeja | 159     |
 | Deepak Lokendrasingh Chahar     | 2       |
-```
+
