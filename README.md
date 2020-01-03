@@ -114,7 +114,7 @@ update career set matches=matches + 0,innings=innings+0,not_outs=not_outs+0,runs
 balls_bowled=balls_bowled+0,runs_conceded=runs_conceded+0,wickets=wickets+0,catches=catches+0,
 stumpings=stumpings+0 where career_no=3;
 ```
-*list career details of players
+* list career details of players
 ```sql
 
 select * from career;
@@ -125,7 +125,7 @@ select * from career;
 | 2         | 159     | 106     | 36       | 2188        | 8029         | 6552          | 181     | 58      | 0         |
 | 3         | 3       | 2       | 1        | 18          | 126          | 129           | 2       | 0       | 0         |
 
-*function for calculating batting average
+* function for calculating batting average
 ```sql
 
 create or replace FUNCTION BATTING_AVERAGE_CALC(runs_scored number, not_outs number,innings number)
@@ -138,7 +138,7 @@ batting_average := runs_scored / times_out;
   RETURN batting_average;
 END BATTING_AVERAGE_CALC;
 ```
-*function for calculating bowling average
+* function for calculating bowling average
 ```sql
 
 create or replace FUNCTION BOWLING_AVERAGE_CALC (runs_conceded number,wickets number)
